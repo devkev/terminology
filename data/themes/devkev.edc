@@ -1,7 +1,7 @@
 #ifndef NO_COLORS
 color_classes {
 # include "default_colors.in.edc"
-# define BG_COL 32 32 32 255
+# define BG_COL 0 0 0 255
 }
 #endif
 
