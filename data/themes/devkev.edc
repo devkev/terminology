@@ -697,23 +697,6 @@ collections {
                visible: 0;
             }
          }
-         part { name: "shine";
-            mouse_events: 0;
-            description { state: "default" 0.0;
-               rel1.offset: 0 0;
-               rel2.offset: -1 -1;
-               image.normal: "bg_shine";
-               fill.smooth: 0;
-               align: 0.5 0.0;
-               aspect: (256/120) (256/120);
-               aspect_preference: HORIZONTAL;
-               color: 255 255 255 64;
-            }
-            description { state: "focused" 0.0;
-               inherit: "default" 0.0;
-               color: 255 255 255 255;
-            }
-         }
          part { name: "glintclip"; type: RECT;
             description { state: "default" 0.0;
             }
@@ -1005,14 +988,12 @@ collections {
             action: STATE_SET "focused" 0.0;
             target: "glint";
             target: "glow";
-            target: "shine";
             after: "focus_in2";
          }
          program {
             signal: "focused,set"; source: "terminology";
             action: STATE_SET "focused" 0.0;
             target: "glint";
-            target: "shine";
 #if (EFL_VERSION_MAJOR > 1) || (EFL_VERSION_MINOR >= 9)
             sequence {
                action: STATE_SET "focused2" 0.0;
@@ -1030,7 +1011,6 @@ collections {
             action: STATE_SET "default" 0.0;
             target: "glint";
             target: "glow";
-            target: "shine";
          }
 
          ////////////////////////////////////////////////////////////////////
