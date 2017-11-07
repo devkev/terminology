@@ -163,6 +163,7 @@ collections {
          }
          part { name: "terminology.background"; type: SWALLOW;
             clip_to: "fade";
+            no_render: 1;
             description { state: "default" 0.0;
             }
             description { state: "image" 0.0;
@@ -202,6 +203,32 @@ collections {
             signal: "media,movie"; source: "terminology";
             action: STATE_SET "movie" 0.0;
             target: "terminology.background";
+         }
+
+         part { name: "terminology.background.proxy"; type: PROXY;
+            description { state: "default" 0.0;
+               source: "terminology.background";
+               filter.code: "blend { color = '#0006' }";
+            }
+            description { state: "focused" 0.0;
+               inherit: "default" 0.0;
+               filter.code: "blend { color = '#0000' }";
+            }
+         }
+         program {
+            signal: "focus,in"; source: "terminology";
+            action: STATE_SET "focused" 0.0;
+            target: "terminology.background.proxy";
+         }
+         program {
+            signal: "focused,set"; source: "terminology";
+            action: STATE_SET "focused" 0.0;
+            target: "terminology.background.proxy";
+         }
+         program {
+            signal: "focus,out"; source: "terminology";
+            action: STATE_SET "default" 0.0;
+            target: "terminology.background.proxy";
          }
 
          part { name: "terminology.tabregion"; type: SWALLOW;
