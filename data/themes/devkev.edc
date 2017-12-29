@@ -163,7 +163,6 @@ collections {
          }
          part { name: "terminology.background"; type: SWALLOW;
             clip_to: "fade";
-            no_render: 1;
             description { state: "default" 0.0;
             }
             description { state: "image" 0.0;
@@ -205,30 +204,30 @@ collections {
             target: "terminology.background";
          }
 
-         part { name: "terminology.background.proxy"; type: PROXY;
+         part { name: "terminology.background.fade";
             description { state: "default" 0.0;
-               source: "terminology.background";
-               filter.code: "blend { color = '#0006' }";
+               image.normal: "solid_black.png";
+               color: 0 0 0 102;
             }
             description { state: "focused" 0.0;
                inherit: "default" 0.0;
-               filter.code: "blend { color = '#0000' }";
+               color: 0 0 0 0;
             }
          }
          program {
             signal: "focus,in"; source: "terminology";
             action: STATE_SET "focused" 0.0;
-            target: "terminology.background.proxy";
+            target: "terminology.background.fade";
          }
          program {
             signal: "focused,set"; source: "terminology";
             action: STATE_SET "focused" 0.0;
-            target: "terminology.background.proxy";
+            target: "terminology.background.fade";
          }
          program {
             signal: "focus,out"; source: "terminology";
             action: STATE_SET "default" 0.0;
-            target: "terminology.background.proxy";
+            target: "terminology.background.fade";
          }
 
          part { name: "terminology.tabregion"; type: SWALLOW;
@@ -284,6 +283,7 @@ collections {
         image: "media_busy_knob.png" COMP;
         image: "media_busy_spinner.png" COMP;
         image: "tab_close.png" COMP;
+        image: "solid_black.png" COMP;
       }
       set { name: "bg_shadow";
         image { image: "bg_shadow.png"  COMP; size: 0 0 200 150; }
